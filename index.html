@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>README Analyzer - Ultimate Mobile Manager v5.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      code,
+      pre {
+        font-family: "JetBrains Mono", monospace !important;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .glass-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(71, 85, 105, 0.5);
+      }
+
+      .sidebar-link.active {
+        background: linear-gradient(
+          90deg,
+          rgba(59, 130, 246, 0.2),
+          transparent
+        );
+        border-left: 3px solid #3b82f6;
+      }
+
+      .ascii-box {
+        background: #0f172a;
+        border: 1px solid #334155;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        line-height: 1.4;
+        overflow-x: auto;
+      }
+
+      .feature-table tr:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .pulse-dot {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .section-card {
+        transition: all 0.3s ease;
+      }
+
+      .section-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      details summary {
+        cursor: pointer;
+        list-style: none;
+      }
+
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details[open] .chevron {
+        transform: rotate(180deg);
+      }
+
+      .stat-card {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 41, 59, 0.9),
+          rgba(15, 23, 42, 0.9)
+        );
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-200 min-h-screen">
+    <!-- Header -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-700/50"
+    >
+      <div class="flex items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xl"
+          >
+            📄
+          </div>
+          <div>
+            <h1 class="text-xl font-bold gradient-text">README Analyzer</h1>
+            <p class="text-xs text-slate-400">
+              Professional Documentation Viewer
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/20 border border-green-500/30"
+          >
+            <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot"></span>
+            <span class="text-sm text-green-400">Analyzed</span>
+          </div>
+          <a
+            href="https://github.com/SudhirDevOps1"
+            target="_blank"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+            <span class="text-sm">@SudhirDevOps1</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex pt-20">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="fixed left-0 top-20 bottom-0 w-72 glass-card border-r border-slate-700/50 overflow-y-auto"
+      >
+        <div class="p-4">
+          <!-- Document Info -->
+          <div
+            class="mb-6 p-4 rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/30"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-3xl">🚀</span>
+              <div>
+                <h3 class="font-bold text-white">Ultimate Mobile Manager</h3>
+                <span class="text-xs text-blue-400">v5.0</span>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400">By Sudhir Kumar</p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-2 gap-2 mb-6">
+            <div class="stat-card p-3 rounded-lg border border-slate-700">
+              <div class="text-2xl font-bold text-blue-400" id="sectionCount">
+                13
+              </div>
+              <div class="text-xs text-slate-400">Sections</div>
+            </div>
+            <div class="stat-card p-3 rounded-lg border border-slate-700">
+              <div class="text-2xl font-bold text-purple-400" id="wordCount">
+                4.2K
+              </div>
+              <div class="text-xs text-slate-400">Words</div>
+            </div>
+            <div class="stat-card p-3 rounded-lg border border-slate-700">
+              <div class="text-2xl font-bold text-green-400" id="tableCount">
+                12
+              </div>
+              <div class="text-xs text-slate-400">Tables</div>
+            </div>
+            <div class="stat-card p-3 rounded-lg border border-slate-700">
+              <div class="text-2xl font-bold text-amber-400" id="codeCount">
+                25+
+              </div>
+              <div class="text-xs text-slate-400">Code Blocks</div>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <h4
+            class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3"
+          >
+            Table of Contents
+          </h4>
+          <nav class="space-y-1" id="tocNav">
+            <a
+              href="#introduction"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>🎯</span> Introduction
+            </a>
+            <a
+              href="#requirements"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>📦</span> Requirements
+            </a>
+            <a
+              href="#installation"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>🔧</span> Installation
+            </a>
+            <a
+              href="#mobile-setup"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>📱</span> Mobile Setup
+            </a>
+            <a
+              href="#first-launch"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>🚀</span> First Launch
+            </a>
+            <a
+              href="#features"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>📚</span> Features Guide
+            </a>
+            <a
+              href="#file-transfer"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>📤</span> File Transfer
+            </a>
+            <a
+              href="#screen-mirror"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>📺</span> Screen Mirror
+            </a>
+            <a
+              href="#app-management"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>📱</span> App Management
+            </a>
+            <a
+              href="#backup-restore"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>💾</span> Backup & Restore
+            </a>
+            <a
+              href="#shortcuts"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>⌨️</span> Keyboard Shortcuts
+            </a>
+            <a
+              href="#troubleshooting"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>🔧</span> Troubleshooting
+            </a>
+            <a
+              href="#faq"
+              class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-slate-800/50 transition-colors"
+            >
+              <span>❓</span> FAQ
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="ml-72 flex-1 p-8">
+        <div class="max-w-5xl mx-auto">
+          <!-- Hero Section -->
+          <section
+            class="mb-12 p-8 rounded-2xl bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 border border-slate-700/50"
+          >
+            <div class="ascii-box p-4 rounded-lg mb-6 text-green-400">
+              <pre>
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   🚀 ULTIMATE MOBILE MANAGER v5.0                                ║
+║                                                                  ║
+║   Developer : Sudhir Kumar                                       ║
+║   GitHub    : @SudhirDevOps1                                     ║
+║   License   : Free & Open Source                                 ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝</pre
+              >
+            </div>
+            <h1 class="text-4xl font-bold mb-4 gradient-text">
+              Ultimate Mobile Manager v5.0
+            </h1>
+            <p class="text-lg text-slate-300 mb-6">
+              A powerful all-in-one Android device management tool with secure
+              file transfer, AES-256 encryption, screen mirroring, app
+              management, and much more.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm border border-blue-500/30"
+                >Python</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm border border-green-500/30"
+                >ADB</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm border border-purple-500/30"
+                >AES-256</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-sm border border-amber-500/30"
+                >scrcpy</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-sm border border-pink-500/30"
+                >Tkinter</span
+              >
+            </div>
+          </section>
+
+          <!-- Introduction -->
+          <section
+            id="introduction"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center"
+                >🎯</span
+              >
+              Introduction
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-4 text-blue-400">
+              ✨ Key Features
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full feature-table text-sm">
+                <thead>
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-3 px-4 text-slate-400">Feature</th>
+                    <th class="text-left py-3 px-4 text-slate-400">
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">📁 Dual File Browser</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Browse PC & Mobile files side-by-side
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">🔐 AES-256 Encryption</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Military-grade file encryption
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">📺 Screen Mirror</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Real-time screen mirroring via scrcpy
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">📸 Screenshot</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Capture phone screen instantly
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">🎬 Screen Record</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Record phone screen video
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">📱 App Manager</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      View, open, uninstall apps
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">🔋 Battery Monitor</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Live battery status
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">💾 Storage Info</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Check available space
+                    </td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">📇 Contacts</td>
+                    <td class="py-3 px-4 text-slate-400">View contacts</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">💬 SMS</td>
+                    <td class="py-3 px-4 text-slate-400">View messages</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">💻 ADB Terminal</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Direct shell access
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">🎨 Themes</td>
+                    <td class="py-3 px-4 text-slate-400">
+                      Dark, Light, Blue themes
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Requirements -->
+          <section
+            id="requirements"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center"
+                >📦</span
+              >
+              Requirements
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-4 text-purple-400">
+              System Requirements
+            </h3>
+            <div class="overflow-x-auto mb-6">
+              <table class="w-full feature-table text-sm">
+                <thead>
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-3 px-4 text-slate-400">
+                      Component
+                    </th>
+                    <th class="text-left py-3 px-4 text-slate-400">Minimum</th>
+                    <th class="text-left py-3 px-4 text-slate-400">
+                      Recommended
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">OS</td>
+                    <td class="py-3 px-4 text-slate-400">Windows 10</td>
+                    <td class="py-3 px-4 text-green-400">Windows 11</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">Python</td>
+                    <td class="py-3 px-4 text-slate-400">3.8+</td>
+                    <td class="py-3 px-4 text-green-400">3.10+</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">RAM</td>
+                    <td class="py-3 px-4 text-slate-400">4GB</td>
+                    <td class="py-3 px-4 text-green-400">8GB</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3 px-4">Storage</td>
+                    <td class="py-3 px-4 text-slate-400">500MB</td>
+                    <td class="py-3 px-4 text-green-400">1GB</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">USB</td>
+                    <td class="py-3 px-4 text-slate-400">USB 2.0</td>
+                    <td class="py-3 px-4 text-green-400">USB 3.0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-4 text-purple-400">
+              Required Downloads
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4">
+              <a
+                href="https://www.python.org/downloads/"
+                target="_blank"
+                class="p-4 rounded-lg bg-slate-800/50 border border-slate-700 hover:border-blue-500/50 transition-colors"
+              >
+                <div class="text-2xl mb-2">🐍</div>
+                <h4 class="font-semibold">Python</h4>
+                <p class="text-xs text-slate-400">Run the application</p>
+              </a>
+              <a
+                href="https://developer.android.com/studio/releases/platform-tools"
+                target="_blank"
+                class="p-4 rounded-lg bg-slate-800/50 border border-slate-700 hover:border-green-500/50 transition-colors"
+              >
+                <div class="text-2xl mb-2">🤖</div>
+                <h4 class="font-semibold">ADB Platform Tools</h4>
+                <p class="text-xs text-slate-400">Android communication</p>
+              </a>
+              <a
+                href="https://github.com/Genymobile/scrcpy/releases"
+                target="_blank"
+                class="p-4 rounded-lg bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-colors"
+              >
+                <div class="text-2xl mb-2">📺</div>
+                <h4 class="font-semibold">scrcpy (Optional)</h4>
+                <p class="text-xs text-slate-400">Screen mirroring</p>
+              </a>
+            </div>
+          </section>
+
+          <!-- Installation -->
+          <section
+            id="installation"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center"
+                >🔧</span
+              >
+              Installation
+            </h2>
+
+            <!-- Step 1 -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span
+                  class="w-6 h-6 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center"
+                  >1</span
+                >
+                Install Python
+              </h3>
+              <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                <pre
+                  class="text-sm text-green-400"
+                ><code># Download from python.org
+# ✅ CHECK "Add Python to PATH" during installation!</code></pre>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span
+                  class="w-6 h-6 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center"
+                  >2</span
+                >
+                Create Project Structure
+              </h3>
+              <div class="ascii-box p-4 rounded-lg text-cyan-400">
+                <pre>
+📁 UltimateMobileManager/
+│
+├── 📄 main.py                    ← Main application
+│
+├── 📁 platform-tools/            ← ADB (Required)
+│   ├── adb.exe
+│   ├── AdbWinApi.dll
+│   ├── AdbWinUsbApi.dll
+│   └── fastboot.exe
+│
+├── 📁 scrcpy/                    ← Screen mirror (Optional)
+│   ├── scrcpy.exe
+│   ├── scrcpy-server
+│   └── (other files)
+│
+├── 📁 backups/                   ← Auto-created
+├── 📁 screenshots/               ← Auto-created
+├── 📁 temp/                      ← Auto-created
+└── 📁 logs/                      ← Auto-created</pre
+                >
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span
+                  class="w-6 h-6 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center"
+                  >3</span
+                >
+                Install Python Dependencies
+              </h3>
+              <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                <pre
+                  class="text-sm"
+                ><code class="language-bash">pip install cryptography pillow
+
+# Or use requirements.txt:
+pip install -r requirements.txt</code></pre>
+              </div>
+              <div
+                class="mt-3 p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <p class="text-xs text-slate-400 font-mono">
+                  requirements.txt:
+                </p>
+                <pre class="text-sm text-amber-400 mt-2">
+cryptography>=41.0.0
+pillow>=10.0.0</pre
+                >
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span
+                  class="w-6 h-6 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center"
+                  >4</span
+                >
+                Run Application
+              </h3>
+              <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                <pre
+                  class="text-sm"
+                ><code class="language-bash"># Method 1: Double-click
+main.py
+
+# Method 2: Command line
+python main.py
+
+# Method 3: With console output (for debugging)
+python -u main.py</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- Mobile Setup -->
+          <section
+            id="mobile-setup"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center"
+                >📱</span
+              >
+              Mobile Setup (USB Debugging)
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+              <div
+                class="p-4 rounded-lg bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30"
+              >
+                <div class="text-3xl mb-3">1️⃣</div>
+                <h4 class="font-semibold mb-2">Enable Developer Options</h4>
+                <div class="ascii-box p-3 rounded text-xs text-green-400">
+                  <pre>
+📱 Settings
+  └── 📋 About Phone
+      └── 🔨 Build Number
+          ← TAP 7 TIMES!</pre
+                  >
+                </div>
+              </div>
+              <div
+                class="p-4 rounded-lg bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30"
+              >
+                <div class="text-3xl mb-3">2️⃣</div>
+                <h4 class="font-semibold mb-2">Enable USB Debugging</h4>
+                <div class="ascii-box p-3 rounded text-xs text-green-400">
+                  <pre>
+📱 Settings
+  └── 🔧 System
+      └── 👨‍💻 Developer Options
+          └── 🐛 USB Debugging → ON ✅</pre
+                  >
+                </div>
+              </div>
+              <div
+                class="p-4 rounded-lg bg-gradient-to-br from-green-600/20 to-green-800/20 border border-green-500/30"
+              >
+                <div class="text-3xl mb-3">3️⃣</div>
+                <h4 class="font-semibold mb-2">Connect & Authorize</h4>
+                <div class="ascii-box p-3 rounded text-xs text-green-400">
+                  <pre>
+🔌 Connect USB
+📂 Select: "File Transfer"
+⚠️ Popup: "Allow USB debugging?"
+✅ Tap: "OK" / "Allow"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-4 text-amber-400">
+              Brand-Specific Instructions
+            </h3>
+            <div class="space-y-3">
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium">📱 Samsung</span>
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Settings → About Phone → Software Information → Build Number
+                  (7 taps)<br />
+                  Settings → Developer Options → USB Debugging → ON
+                </div>
+              </details>
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium">📱 Xiaomi / Redmi / POCO</span>
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Settings → About Phone → MIUI Version (7 taps)<br />
+                  Settings → Additional Settings → Developer Options:<br />
+                  ✅ USB Debugging → ON<br />
+                  ✅ USB Debugging (Security Settings) → ON<br />
+                  ✅ Install via USB → ON
+                </div>
+              </details>
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium">📱 OnePlus</span>
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Settings → About Phone → Build Number (7 taps)<br />
+                  Settings → System → Developer Options → USB Debugging → ON
+                </div>
+              </details>
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium"
+                    >📱 Realme / OPPO / Vivo / Motorola</span
+                  >
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Settings → About Phone → Build Number/Version (7 taps)<br />
+                  Settings → (System/) Developer Options → USB Debugging → ON
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- First Launch -->
+          <section
+            id="first-launch"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center"
+                >🚀</span
+              >
+              First Launch - Application Interface
+            </h2>
+
+            <div
+              class="ascii-box p-4 rounded-lg text-green-400 text-xs overflow-x-auto mb-6"
+            >
+              <pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ 🚀 Ultimate Mobile Manager v5.0                   🕐 2024-01-15  14:30:45       │
+│ By Sudhir Kumar                                   [📸 Screenshot] [📺 Mirror]  │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                              DEVICE STATUS BAR                                  │
+│ ┌──────────────────┬───────────────┬───────────────┬───────────────┬──────────┐ │
+│ │ ✅ Samsung M31   │ 🔋 Battery    │ 💾 Storage    │ 📶 Network    │ 📱 Time  │ │
+│ │    Android 12    │    85%        │    32GB Free  │    HomeWifi   │  14:30   │ │
+│ │    SDK 31        │ ⚡ Charging   │    Used: 96GB │ 192.168.1.100 │ Up: 2d   │ │
+│ └──────────────────┴───────────────┴───────────────┴───────────────┴──────────┘ │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ 🔑 Password (min 10 chars): [●●●●●●●●●●●●] [✓] Show   ✅ Good    🔍 Search: [ ] │
+├───────────────────────────────┬─────────┬───────────────────────────────────────┤
+│   💻 PC FILES                 │ TRANSFER│    📱 MOBILE FILES                    │
+│   [⬆️][🏠][🔄]                │   ▶▶    │    [⬆️][📱][🔄]                       │
+│   Path: C:\Users\Sudhir      │ Encrypt │    Path: /sdcard                      │
+│   ────────────────────────    │   ◀◀    │    ─────────────────────────────────  │
+│   📁 Desktop                  │ Decrypt │    📁 DCIM                            │
+│   📁 Documents                │─────────│    📁 Download                        │
+│   📁 Downloads                │ → Copy  │    📁 Pictures                        │
+│   📁 Music                    │ ← Copy  │    🎵 Music                           │
+│   📁 Pictures                 │─────────│    💬 WhatsApp                        │
+│   Items: 25                   │ 🗑️ Del  │    Items: 18                          │
+├───────────────────────────────┴─────────┴───────────────────────────────────────┤
+│ ✅ Ready                           🔐 AES-256-GCM | PBKDF2 100K    [══════════] │
+└─────────────────────────────────────────────────────────────────────────────────┘</pre
+              >
+            </div>
+
+            <h3 class="text-lg font-semibold mb-4 text-pink-400">
+              Connection Status Icons
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div
+                class="p-3 rounded-lg bg-green-500/10 border border-green-500/30 text-center"
+              >
+                <div class="text-2xl mb-1">✅</div>
+                <div class="text-sm font-medium text-green-400">Connected</div>
+                <div class="text-xs text-slate-400">Good to go!</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-center"
+              >
+                <div class="text-2xl mb-1">❌</div>
+                <div class="text-sm font-medium text-red-400">No Device</div>
+                <div class="text-xs text-slate-400">Check USB</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-center"
+              >
+                <div class="text-2xl mb-1">⚠️</div>
+                <div class="text-sm font-medium text-amber-400">
+                  Unauthorized
+                </div>
+                <div class="text-xs text-slate-400">Accept on phone</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-center"
+              >
+                <div class="text-2xl mb-1">🔴</div>
+                <div class="text-sm font-medium text-red-400">ADB Missing</div>
+                <div class="text-xs text-slate-400">Install tools</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Features Guide -->
+          <section
+            id="features"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center"
+                >📚</span
+              >
+              Features Guide
+            </h2>
+
+            <!-- Password Protection -->
+            <div
+              class="mb-6 p-4 rounded-lg bg-slate-800/50 border border-slate-700"
+            >
+              <h3 class="text-lg font-semibold mb-3 text-indigo-400">
+                🔑 Password Protection
+              </h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="ascii-box p-3 rounded text-xs text-amber-400">
+                  <pre>
+┌────────────────────────────────────────────────┐
+│  🔑 PASSWORD REQUIREMENTS                      │
+├────────────────────────────────────────────────┤
+│  ✅ Minimum 10 characters                      │
+│  ✅ Can include letters, numbers, symbols     │
+│  ✅ Case-sensitive (Abc ≠ abc)                │
+│  ✅ Longer = More secure                       │
+│                                                │
+│  ⚠️ IMPORTANT: Remember your password!        │
+│     Lost password = Lost encrypted files!     │
+└────────────────────────────────────────────────┘</pre
+                  >
+                </div>
+                <div>
+                  <h4 class="font-medium mb-2">Password Strength Indicator</h4>
+                  <table class="w-full text-sm">
+                    <tr class="border-b border-slate-700">
+                      <td class="py-2">0-9 chars</td>
+                      <td class="py-2 text-red-400">❌ Too Short</td>
+                    </tr>
+                    <tr class="border-b border-slate-700">
+                      <td class="py-2">10-13 chars</td>
+                      <td class="py-2 text-green-400">✅ Good</td>
+                    </tr>
+                    <tr class="border-b border-slate-700">
+                      <td class="py-2">14-19 chars</td>
+                      <td class="py-2 text-blue-400">💪 Strong</td>
+                    </tr>
+                    <tr>
+                      <td class="py-2">20+ chars</td>
+                      <td class="py-2 text-purple-400">🔥 Very Strong</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- File Type Icons -->
+            <div class="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
+              <h3 class="text-lg font-semibold mb-3 text-indigo-400">
+                📁 File Type Icons
+              </h3>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                <div class="flex items-center gap-2">
+                  <span>📁</span> Folder
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>📷</span> Camera/DCIM
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>📥</span> Download
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>🎵</span> Music folder
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>🖼️</span> .jpg, .png, .gif
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>🎬</span> .mp4, .mkv, .avi
+                </div>
+                <div class="flex items-center gap-2"><span>📕</span> .pdf</div>
+                <div class="flex items-center gap-2"><span>📱</span> .apk</div>
+                <div class="flex items-center gap-2">
+                  <span>📦</span> .zip, .rar, .7z
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>💬</span> WhatsApp
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>🔐</span> .secbak (encrypted)
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>📄</span> .txt, .log
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- File Transfer -->
+          <section
+            id="file-transfer"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center"
+                >📤</span
+              >
+              File Transfer
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Encrypted Transfer -->
+              <div
+                class="p-4 rounded-lg bg-gradient-to-br from-green-600/10 to-green-800/10 border border-green-500/30"
+              >
+                <h3
+                  class="text-lg font-semibold mb-3 flex items-center gap-2 text-green-400"
+                >
+                  🔐 Encrypted Transfer (Recommended)
+                </h3>
+                <div class="space-y-3 text-sm">
+                  <div class="p-3 rounded bg-slate-900/50">
+                    <div class="font-medium text-blue-400 mb-1">
+                      PC → Mobile
+                    </div>
+                    <ol
+                      class="list-decimal list-inside text-slate-300 space-y-1"
+                    >
+                      <li>Select files in PC panel</li>
+                      <li>Enter password (min 10 chars)</li>
+                      <li>Click "▶▶ Encrypt" button</li>
+                      <li>Wait for process to complete</li>
+                    </ol>
+                  </div>
+                  <div class="p-3 rounded bg-slate-900/50">
+                    <div class="font-medium text-purple-400 mb-1">
+                      Mobile → PC
+                    </div>
+                    <ol
+                      class="list-decimal list-inside text-slate-300 space-y-1"
+                    >
+                      <li>Select .secbak file on mobile</li>
+                      <li>Enter SAME password</li>
+                      <li>Click "◀◀ Decrypt" button</li>
+                      <li>Choose save location</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Direct Transfer -->
+              <div
+                class="p-4 rounded-lg bg-gradient-to-br from-blue-600/10 to-blue-800/10 border border-blue-500/30"
+              >
+                <h3
+                  class="text-lg font-semibold mb-3 flex items-center gap-2 text-blue-400"
+                >
+                  📋 Direct Transfer (No Encryption)
+                </h3>
+                <div class="space-y-3 text-sm">
+                  <div class="p-3 rounded bg-slate-900/50">
+                    <div class="font-medium text-blue-400 mb-1">
+                      PC → Mobile
+                    </div>
+                    <ol
+                      class="list-decimal list-inside text-slate-300 space-y-1"
+                    >
+                      <li>Select files in PC panel</li>
+                      <li>Click "→ Copy" button</li>
+                      <li>Files copied to mobile folder</li>
+                    </ol>
+                  </div>
+                  <div class="p-3 rounded bg-slate-900/50">
+                    <div class="font-medium text-purple-400 mb-1">
+                      Mobile → PC
+                    </div>
+                    <ol
+                      class="list-decimal list-inside text-slate-300 space-y-1"
+                    >
+                      <li>Select files in Mobile panel</li>
+                      <li>Click "← Copy" button</li>
+                      <li>Files copied to PC folder</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mt-6 mb-3 text-cyan-400">
+              ⏱️ Transfer Time Estimates
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full feature-table text-sm">
+                <thead>
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-2 px-4">File Size</th>
+                    <th class="text-left py-2 px-4">USB 2.0</th>
+                    <th class="text-left py-2 px-4">USB 3.0</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-2 px-4">10 MB</td>
+                    <td class="py-2 px-4 text-slate-400">~5 sec</td>
+                    <td class="py-2 px-4 text-green-400">~2 sec</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-2 px-4">100 MB</td>
+                    <td class="py-2 px-4 text-slate-400">~30 sec</td>
+                    <td class="py-2 px-4 text-green-400">~10 sec</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-2 px-4">500 MB</td>
+                    <td class="py-2 px-4 text-slate-400">~2 min</td>
+                    <td class="py-2 px-4 text-green-400">~45 sec</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-2 px-4">1 GB</td>
+                    <td class="py-2 px-4 text-slate-400">~5 min</td>
+                    <td class="py-2 px-4 text-green-400">~1.5 min</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4">5 GB</td>
+                    <td class="py-2 px-4 text-slate-400">~25 min</td>
+                    <td class="py-2 px-4 text-green-400">~8 min</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Screen Mirror -->
+          <section
+            id="screen-mirror"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-violet-500/20 flex items-center justify-center"
+                >📺</span
+              >
+              Screen Mirror & Record
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-violet-400">
+                  📺 scrcpy Keyboard Controls
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <tbody>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + H
+                        </td>
+                        <td class="py-2 px-3">Home button</td>
+                      </tr>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + B
+                        </td>
+                        <td class="py-2 px-3">Back button</td>
+                      </tr>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + S
+                        </td>
+                        <td class="py-2 px-3">Recent apps</td>
+                      </tr>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + ↑/↓
+                        </td>
+                        <td class="py-2 px-3">Volume Up/Down</td>
+                      </tr>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + P
+                        </td>
+                        <td class="py-2 px-3">Power button</td>
+                      </tr>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + R
+                        </td>
+                        <td class="py-2 px-3">Rotate screen</td>
+                      </tr>
+                      <tr class="border-b border-slate-800">
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Ctrl + N
+                        </td>
+                        <td class="py-2 px-3">Notification panel</td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="py-2 px-3 font-mono text-xs bg-slate-800 rounded"
+                        >
+                          Drag & Drop
+                        </td>
+                        <td class="py-2 px-3">Install APK</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-violet-400">
+                  📸 Screenshot & 🎬 Record
+                </h3>
+                <div class="space-y-4">
+                  <div
+                    class="p-4 rounded-lg bg-slate-800/50 border border-slate-700"
+                  >
+                    <div class="text-2xl mb-2">📸</div>
+                    <p class="text-sm text-slate-300">
+                      Click 📸 button or Menu → Tools → Screenshot
+                    </p>
+                    <p class="text-xs text-slate-400 mt-1">
+                      Saved to: screenshots/screenshot_YYYYMMDD.png
+                    </p>
+                  </div>
+                  <div
+                    class="p-4 rounded-lg bg-slate-800/50 border border-slate-700"
+                  >
+                    <div class="text-2xl mb-2">🎬</div>
+                    <p class="text-sm text-slate-300">
+                      Menu → Tools → Screen Record (max 3 min)
+                    </p>
+                    <p class="text-xs text-slate-400 mt-1">
+                      Saved to: /sdcard/recording_YYYYMMDD.mp4
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- App Management -->
+          <section
+            id="app-management"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-rose-500/20 flex items-center justify-center"
+                >📱</span
+              >
+              App Management
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="ascii-box p-4 rounded-lg text-cyan-400 text-xs">
+                <pre>
+┌─────────────────────────────────────────────┐
+│  📱 Installed Apps                     [X]  │
+├─────────────────────────────────────────────┤
+│  com.whatsapp                              │
+│  com.instagram.android                      │
+│  com.facebook.katana                        │
+│  com.spotify.music                          │
+│  com.netflix.mediaclient                    │
+│  org.telegram.messenger                     │
+│  com.google.android.youtube                 │
+├─────────────────────────────────────────────┤
+│  [▶️ Open]  [🗑️ Uninstall]  [❌ Force Stop] │
+└─────────────────────────────────────────────┘</pre
+                >
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-rose-400">
+                  App Actions
+                </h3>
+                <div class="space-y-2">
+                  <div
+                    class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50"
+                  >
+                    <span class="text-xl">▶️</span>
+                    <div>
+                      <div class="font-medium">Open</div>
+                      <div class="text-xs text-slate-400">Launch the app</div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50"
+                  >
+                    <span class="text-xl">🗑️</span>
+                    <div>
+                      <div class="font-medium">Uninstall</div>
+                      <div class="text-xs text-slate-400">Remove the app</div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50"
+                  >
+                    <span class="text-xl">❌</span>
+                    <div>
+                      <div class="font-medium">Force Stop</div>
+                      <div class="text-xs text-slate-400">Stop running app</div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50"
+                  >
+                    <span class="text-xl">🧹</span>
+                    <div>
+                      <div class="font-medium">Clear Data</div>
+                      <div class="text-xs text-slate-400">Erase app data</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Backup & Restore -->
+          <section
+            id="backup-restore"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center"
+                >💾</span
+              >
+              Backup & Restore
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-3 text-emerald-400">
+              📁 Important Folders to Backup
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+              <div
+                class="p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <div class="font-mono text-xs text-blue-400">/sdcard/DCIM/</div>
+                <div class="text-xs text-slate-400">Camera photos & videos</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <div class="font-mono text-xs text-blue-400">
+                  /sdcard/Download/
+                </div>
+                <div class="text-xs text-slate-400">Downloaded files</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <div class="font-mono text-xs text-blue-400">
+                  /sdcard/Pictures/
+                </div>
+                <div class="text-xs text-slate-400">Screenshots, images</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <div class="font-mono text-xs text-blue-400">
+                  /sdcard/WhatsApp/
+                </div>
+                <div class="text-xs text-slate-400">WhatsApp data</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <div class="font-mono text-xs text-blue-400">
+                  /sdcard/Music/
+                </div>
+                <div class="text-xs text-slate-400">Music files</div>
+              </div>
+              <div
+                class="p-3 rounded-lg bg-slate-800/50 border border-slate-700"
+              >
+                <div class="font-mono text-xs text-blue-400">
+                  /sdcard/Documents/
+                </div>
+                <div class="text-xs text-slate-400">Documents</div>
+              </div>
+            </div>
+
+            <div
+              class="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30"
+            >
+              <div class="flex items-start gap-3">
+                <span class="text-2xl">⚠️</span>
+                <div>
+                  <h4 class="font-semibold text-amber-400">
+                    Important Reminder
+                  </h4>
+                  <p class="text-sm text-slate-300 mt-1">
+                    Always write down your encryption password! Lost password =
+                    Lost encrypted files. No recovery possible.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Keyboard Shortcuts -->
+          <section
+            id="shortcuts"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center"
+                >⌨️</span
+              >
+              Keyboard Shortcuts
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-orange-400">
+                  Global Shortcuts
+                </h3>
+                <div class="space-y-2">
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >F5</span
+                    >
+                    <span class="text-sm text-slate-300"
+                      >Refresh all panels</span
+                    >
+                  </div>
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >Ctrl + R</span
+                    >
+                    <span class="text-sm text-slate-300"
+                      >Refresh all panels</span
+                    >
+                  </div>
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >F11</span
+                    >
+                    <span class="text-sm text-slate-300"
+                      >Toggle fullscreen</span
+                    >
+                  </div>
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >Escape</span
+                    >
+                    <span class="text-sm text-slate-300">Exit fullscreen</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-orange-400">
+                  File Browser
+                </h3>
+                <div class="space-y-2">
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >Enter</span
+                    >
+                    <span class="text-sm text-slate-300"
+                      >Open selected folder</span
+                    >
+                  </div>
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >Ctrl + Click</span
+                    >
+                    <span class="text-sm text-slate-300"
+                      >Select multiple items</span
+                    >
+                  </div>
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >Shift + Click</span
+                    >
+                    <span class="text-sm text-slate-300">Select range</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center p-2 rounded bg-slate-800/50"
+                  >
+                    <span
+                      class="font-mono text-sm px-2 py-1 bg-slate-700 rounded"
+                      >Delete</span
+                    >
+                    <span class="text-sm text-slate-300">Delete selected</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Troubleshooting -->
+          <section
+            id="troubleshooting"
+            class="section-card mb-8 p-6 rounded-xl glass-card"
+          >
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center"
+                >🔧</span
+              >
+              Troubleshooting
+            </h2>
+
+            <div class="space-y-4">
+              <details
+                class="rounded-lg border border-red-500/30 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-red-500/10 flex items-center justify-between cursor-pointer hover:bg-red-500/20"
+                >
+                  <span class="font-medium text-red-400"
+                    >❌ "ADB Not Found"</span
+                  >
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  <p class="mb-2">
+                    <strong>Cause:</strong> ADB executable not in correct
+                    location
+                  </p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Download platform-tools from developer.android.com</li>
+                    <li>Extract ZIP file</li>
+                    <li>Copy 'platform-tools' folder to project directory</li>
+                    <li>Restart application</li>
+                  </ol>
+                </div>
+              </details>
+
+              <details
+                class="rounded-lg border border-amber-500/30 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-amber-500/10 flex items-center justify-between cursor-pointer hover:bg-amber-500/20"
+                >
+                  <span class="font-medium text-amber-400"
+                    >❌ "No Device Connected"</span
+                  >
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  <ul class="space-y-2">
+                    <li>• Try a different USB cable (use original)</li>
+                    <li>• Try different USB port (USB 3.0 preferred)</li>
+                    <li>• Enable USB Debugging in Developer Options</li>
+                    <li>• Accept "Allow USB debugging?" on phone</li>
+                    <li>• Change USB mode to "File Transfer"</li>
+                    <li>• Run: adb kill-server && adb start-server</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details
+                class="rounded-lg border border-purple-500/30 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-purple-500/10 flex items-center justify-between cursor-pointer hover:bg-purple-500/20"
+                >
+                  <span class="font-medium text-purple-400"
+                    >❌ "Wrong Password"</span
+                  >
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  <p class="mb-2">
+                    Password is CASE-SENSITIVE ("Password123" ≠ "password123")
+                  </p>
+                  <ul class="space-y-1">
+                    <li>• Check Caps Lock / Num Lock</li>
+                    <li>• Check for extra spaces</li>
+                    <li>• Use "Show" checkbox to verify</li>
+                  </ul>
+                  <p class="mt-2 text-red-400">
+                    ⚠️ If forgot: Encrypted files CANNOT be recovered!
+                  </p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq" class="section-card mb-8 p-6 rounded-xl glass-card">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="w-10 h-10 rounded-lg bg-teal-500/20 flex items-center justify-center"
+                >❓</span
+              >
+              Frequently Asked Questions
+            </h2>
+
+            <div class="space-y-3">
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium"
+                    >Is my password stored anywhere?</span
+                  >
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  No. Your password is NEVER stored. It's used only during
+                  encryption/decryption and then discarded. Lost password = Lost
+                  encrypted files. This is a security feature, not a bug.
+                </div>
+              </details>
+
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium">How secure is the encryption?</span>
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Very secure! Uses AES-256-GCM (same as banks and military),
+                  PBKDF2 with 100,000 iterations for key derivation, and SHA-256
+                  for integrity verification.
+                </div>
+              </details>
+
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium">Can I use this on iPhone?</span>
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  No. This tool uses ADB (Android Debug Bridge) which only works
+                  with Android devices. iOS has its own ecosystem.
+                </div>
+              </details>
+
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium"
+                    >Which Android versions are supported?</span
+                  >
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Minimum: Android 5.0 (Lollipop) | Recommended: Android 8.0+ |
+                  Tested up to: Android 14
+                </div>
+              </details>
+
+              <details
+                class="rounded-lg border border-slate-700 overflow-hidden"
+              >
+                <summary
+                  class="p-4 bg-slate-800/50 flex items-center justify-between cursor-pointer hover:bg-slate-800"
+                >
+                  <span class="font-medium">Is this safe to use?</span>
+                  <svg
+                    class="w-5 h-5 chevron transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </summary>
+                <div class="p-4 bg-slate-900/50 text-sm text-slate-300">
+                  Yes! ✅ Open source code, ✅ No internet connection required,
+                  ✅ No data collection, ✅ No telemetry, ✅ All processing done
+                  locally.
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Quick Reference Card -->
+          <section
+            class="mb-8 p-6 rounded-xl bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 border border-slate-700/50"
+          >
+            <h2 class="text-2xl font-bold mb-4 text-center gradient-text">
+              📋 Quick Reference Card
+            </h2>
+            <div
+              class="ascii-box p-4 rounded-lg text-green-400 text-xs overflow-x-auto"
+            >
+              <pre>
+╔═══════════════════════════════════════════════════════════════════════╗
+║                        QUICK REFERENCE CARD                           ║
+║                      Ultimate Mobile Manager v5.0                     ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  🔌 CONNECT DEVICE                                                    ║
+║     USB Cable → Enable USB Debugging → Allow on Phone                 ║
+║                                                                       ║
+║  📤 ENCRYPTED SEND (PC → Mobile)                                      ║
+║     Select Files → Enter Password → Click ▶▶ Encrypt                 ║
+║                                                                       ║
+║  📥 ENCRYPTED GET (Mobile → PC)                                       ║
+║     Select .secbak → Enter Password → Click ◀◀ Decrypt → Save       ║
+║                                                                       ║
+║  📸 SCREENSHOT: Click 📸 Button                                       ║
+║  📺 SCREEN MIRROR: Click 📺 Button (requires scrcpy)                 ║
+║  📱 APP MANAGER: Click 📱 Button OR Menu → Tools → Apps              ║
+║  🔄 REFRESH: Press F5 OR Click 🔄                                     ║
+║  🖥️ FULLSCREEN: Press F11                                             ║
+║                                                                       ║
+║  ⚠️  REMEMBER YOUR PASSWORD - NO RECOVERY POSSIBLE!                   ║
+╚═══════════════════════════════════════════════════════════════════════╝</pre
+              >
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="text-center py-8 border-t border-slate-800">
+            <div
+              class="ascii-box p-4 rounded-lg text-cyan-400 text-xs inline-block mb-6"
+            >
+              <pre>
+╔═══════════════════════════════════════╗
+║   👤 Sudhir Kumar                     ║
+║   🐙 GitHub: @SudhirDevOps1           ║
+║                                       ║
+║   🛠️ Python • Tkinter • ADB • scrcpy  ║
+║   🔐 AES-256 • Cryptography Library   ║
+╚═══════════════════════════════════════╝</pre
+              >
+            </div>
+            <p class="text-slate-400 text-sm mb-2">
+              Made with ❤️ by Sudhir Kumar
+            </p>
+            <p class="text-slate-500 text-xs">
+              MIT License © 2024 | Free & Open Source Software
+            </p>
+            <div class="mt-4">
+              <span class="text-xs text-slate-500"
+                >⭐ If this tool helped you, please star the repository!</span
+              >
+            </div>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Active section tracking
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".sidebar-link");
+
+      function setActiveLink() {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (scrollY >= sectionTop - 150) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", setActiveLink);
+      setActiveLink();
+
+      // Smooth scroll for navigation links
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Initialize Prism.js
+      if (typeof Prism !== "undefined") {
+        Prism.highlightAll();
+      }
+    </script>
+  </body>
+</html>
